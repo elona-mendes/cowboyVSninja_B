@@ -21,21 +21,22 @@ namespace ariel{
 
         public:
 
-            Ninja(string nme, Point pnt, int spd, int hit): Character(pnt, nme, hit){
-                this->name = nme;
-                this->point = pnt;
-                this->hitPnt = spd;
-                this->speed = hit;
-            }       
+            Ninja(string nme, Point pnt, int spd, int hit): Character(pnt, nme, hit), speed(spd){
+                // this->name = nme;
+                // this->point = pnt;
+                // this->hitPnt = hit;
+                // this->speed = spd;
+            } 
+                  
             // Recive poiter to character and move to him the same as his speed 
             // (if speed = 6, move distance 6).
-            void move(Character* chrctr);
+            void move(Character* chrctr) override;
 
             // If the Ninja is alive and distance from enemy < 1:
             // enemy -40 hitPnt, else nothing happend.
-            bool slash(Character* chrctr);
+            bool slash(Character* chrctr) override;
 
-            int getSpeed(){
+            int getSpeed() const{
                 return this->speed;
             }
 
@@ -46,7 +47,7 @@ namespace ariel{
             // and the character's name will appear in parentheses. 
             // Before the name will appear a letter indicating the type of character: 
             // N for ninja and C for morning.
-            string print();
+            string print() override;
 
             // int getHitPoint();
 

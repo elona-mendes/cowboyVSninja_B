@@ -15,7 +15,6 @@ namespace ariel{
         public:
         //constractor: hit = 100, speed = 14
             YoungNinja(string name, Point pnt);
-
             // void move(Character* chrctr);
 
             // // If the Ninja is alive and distance from enemy < 1:

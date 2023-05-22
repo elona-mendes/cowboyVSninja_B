@@ -16,27 +16,22 @@ namespace ariel{
         public:
 
             //Constructor
-            Point(double xPnt, double yPnt);
-
-            Point(){
-                this->xPoint=0;
-                this->yPoint=0;
-            }
+            Point(double xPnt = 0, double yPnt = 0);
 
             //Getters
-            double getX(){
+            double getX() const{
                 return this->xPoint;
             }
-            double getY(){
+            double getY() const{
                 return this->yPoint;
             }
 
             //Setters
-            void setX(double x){
-                this->xPoint = x;
+            void setX(double newx){
+                this->xPoint = newx;
             }
-            void setY(double y){
-                this->yPoint = y;
+            void setY(double newy){
+                this->yPoint = newy;
             }
 
             std::string print();

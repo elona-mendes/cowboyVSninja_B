@@ -38,13 +38,6 @@ void Cowboy::reload(){
     this->numBalls = 6;
 }
 
-// Prints the name of the character, 
-            // the number of its hit points, 
-            // and the point where the character is.
-            // If the character dies a number of - - hit points will not be printed, 
-            // and the character's name will appear in parentheses. 
-            // Before the name will appear a letter indicating the type of character: 
-            // N for ninja and C for morning.
 string Cowboy::print(){
     string out = "C: "; 
     if(!this->isAlive()){

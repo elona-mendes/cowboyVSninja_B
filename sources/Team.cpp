@@ -34,38 +34,51 @@ void Team::attack(Team* tEnemy){
     if(tEnemy == nullptr){
          throw std::invalid_argument("A Team pointer can't be null.");
     }
-    if(tEnemy->stillAlive() == 0){
-        throw std::runtime_error("A Team you want to attack is died.");
+    if(tEnemy->stillAlive() == 0 || this->stillAlive() ==0 ){
+        throw std::runtime_error("A Team (or you) you want to attack is died.");
     }
     int ourSize = this->players.size();
     unsigned int j = 0;
     while ((tEnemy->stillAlive() > 0) && j<ourSize){
         //attack
         //If the leader is died
-        if(!(tEnemy->getLeader()->isAlive())){
+        if(!(this->getLeader()->isAlive())){
+            Point position = this->getLeader()->getLocation();
             double dist = std::numeric_limits<double>::max();
-            unsigned int vecSize = tEnemy->players.size();
-            for(unsigned int i = 0; i < vecSize; i++)
+            for(unsigned int i = 0; i < ourSize; i++)
             {
-                if (tEnemy->players[i]->isAlive()){
-                    if(tEnemy->getLeader()->distance(tEnemy->players[i]) < dist){
-                        dist = tEnemy->getLeader()->distance(tEnemy->players[i]);
-                        tEnemy->setLeader(tEnemy->players[i]);
+                if (this->players[i]->isAlive()){
+                    if(this->players[i]->getLocation().distance(position) < dist){
+                        dist = this->players[i]->getLocation().distance(position);
+                        this->setLeader(this->players[i]);
                     }
                 }
             }
         }
+        Character* attackEnemy;
+        double dist = std::numeric_limits<double>::max();
+        unsigned int vecSize = tEnemy->players.size();
+        for(unsigned int i = 0; i < vecSize; i++)
+        {
+            if (tEnemy->players[i]->isAlive()){
+                if(this->getLeader()->distance(tEnemy->players[i]) < dist){
+                    dist = this->getLeader()->distance(tEnemy->players[i]);
+                    attackEnemy = tEnemy->players[i];
+                }
+            }
+        }
+        //Start the attack
         if(this->players[j]->isAlive()){
             char type = (this->players[j]->print())[0];
             if(type == 'N'){
-                bool ans = this->players[j]->slash(tEnemy->getLeader());
+                bool ans = this->players[j]->slash(attackEnemy);
                 if(!ans){
-                    this->players[j]->move(tEnemy->getLeader());
+                    this->players[j]->move(attackEnemy);
                 }
             }
             else if(type == 'C'){
                 if(this->players[j]->hasboolets()){
-                    this->players[j]->shoot(tEnemy->getLeader());
+                    this->players[j]->shoot(attackEnemy);
                 }
                 else{
                     this->players[j]->reload();
@@ -79,16 +92,13 @@ void Team::attack(Team* tEnemy){
 // Return the number of team character that alive.       
 int Team::stillAlive(){
     int count =0;
-
     unsigned int vecSize = this->players.size();
-
     for(unsigned int i = 0; i < vecSize; i++)
     {
         if (this->players[i]->isAlive()){
             count += 1;
         }
     }
-    
     return count;
 }
 // Print all character details.

@@ -18,18 +18,19 @@ namespace ariel{
         public:
 
             Cowboy(string name, Point pnt);
+            
 
-            int getNumBalls(){
+            int getNumBalls() const{
                 return this->numBalls;
             }
 
             // If the cowboy is alive: "shoot" the enemy, 
             //-10 to enemy "hitPnt" and -1 to "numBalls". 
-            void shoot(Character* chrctr);
+            void shoot(Character* chrctr) override;
             // Return true if the cowboy had Balls, else return false.
-            bool hasboolets();
+            bool hasboolets() override;
             // Reload the cowboy balls, set them to 6.
-            void reload();
+            void reload() override;
 
             // Prints the name of the character, 
             // the number of its hit points, 
@@ -38,7 +39,7 @@ namespace ariel{
             // and the character's name will appear in parentheses. 
             // Before the name will appear a letter indicating the type of character: 
             // N for ninja and C for morning.
-            string print();
+            string print() override;
 
             int getHitPoint();
 

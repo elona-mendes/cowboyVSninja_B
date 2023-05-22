@@ -21,7 +21,7 @@ bool Ninja::slash(Character* chrctr){
     if((!chrctr->isAlive()) || (!this->isAlive())){
         throw std::runtime_error("Can't attack a died enemy or attack if you died.");
     }
-    if(this->getLocation().distance(chrctr->getLocation())<1){
+    if(this->distance(chrctr)<1){
             chrctr->hit(40);
             return true;
     }

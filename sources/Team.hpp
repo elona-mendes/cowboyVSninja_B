@@ -51,9 +51,9 @@ namespace ariel{
             // If there no alive person in our team, or enemy team: stop.
             virtual void attack(Team* tEnemy);
             // Return the number of team character that alive.       
-            virtual int stillAlive();
+            int stillAlive();
             // Print all character details.
-            virtual void print();  
+            void print();  
 
     };
 

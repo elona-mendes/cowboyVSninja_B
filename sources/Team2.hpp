@@ -11,9 +11,6 @@ using namespace std;
 namespace ariel{
     class Team2: public Team{
 
-        // private: 
-        //     vector<Character*> players;
-        //     Character* leader;
 
 //Going over all members of the group (for attacking, printing, or comparing) 
 //will always be done in the following order: 
@@ -22,7 +19,7 @@ namespace ariel{
         public:
             Team2(Character* chrctr);
 
-            void add(Character* chrctr);
+            void add(Character* chrctr) override;
     };
 
 }
