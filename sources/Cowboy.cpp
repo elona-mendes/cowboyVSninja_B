@@ -5,10 +5,10 @@ using namespace std;
 using namespace ariel; 
 
 Cowboy::Cowboy(string nme, Point pnt): Character(pnt, nme, 110){
-    this->name = nme;
-    this->location= pnt;
+    // this->setName(nme);
+    // this->setLocation(pnt);
     this->numBalls = 6;
-    this->hitPnt = 110;
+    // this->setHitPoint(110);
 }
 
 void Cowboy::shoot(Character* chrctr){
@@ -50,7 +50,7 @@ string Cowboy::print(){
     return out;
 }
 
-int Cowboy::getHitPoint(){
-    return this->hitPnt;
-}
+// int Cowboy::getHitPoint(){
+//     return this->hitPnt;
+// }
             

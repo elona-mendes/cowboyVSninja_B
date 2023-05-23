@@ -7,9 +7,6 @@ int Character::getHitPoint(){
     return this->hitPnt;
 }
 
-string Character::print(){
-    return "";
-}
 void Character::shoot(Character* chrctr){
     return;
 }

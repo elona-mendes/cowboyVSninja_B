@@ -41,7 +41,7 @@ namespace ariel{
             // N for ninja and C for morning.
             string print() override;
 
-            int getHitPoint();
+            // int getHitPoint();
 
     };
 

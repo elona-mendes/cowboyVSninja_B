@@ -7,7 +7,7 @@ using namespace ariel;
 // (if speed = 6, move distance 6).
 void Ninja::move(Character* chrctr){
     // if(this->getLocation().distance(chrctr->getLocation()) > 1){
-        this->location = Point::moveTowards(this->getLocation(), chrctr->getLocation(), this->getSpeed());
+        this->setLocation(Point::moveTowards(this->getLocation(), chrctr->getLocation(), this->getSpeed()));
     // }
     
 }

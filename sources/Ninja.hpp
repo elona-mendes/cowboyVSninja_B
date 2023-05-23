@@ -12,16 +12,16 @@ using namespace std;
 namespace ariel{
     class Ninja: public Character{
 
-        protected:
+        private:
 
-            string name;
-            Point point;
+            // string name;
+            // Point point;
             int speed;
-            int hitPnt;
+            // int hitPnt;
 
         public:
 
-            Ninja(string nme, Point pnt, int spd, int hit): Character(pnt, nme, hit), speed(spd){
+            Ninja(string nme, Point pnt, const int spd, int hit): Character(pnt, std::move( nme), hit), speed(spd){
                 // this->name = nme;
                 // this->point = pnt;
                 // this->hitPnt = hit;

@@ -18,6 +18,7 @@ namespace ariel{
                       
         public:
             Team2(Character* chrctr);
+            // virtual ~Team2(){}
 
             void add(Character* chrctr) override;
     };

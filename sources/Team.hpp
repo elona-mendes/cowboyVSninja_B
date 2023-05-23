@@ -21,26 +21,98 @@ namespace ariel{
 //first go over all the cowboys, then go over all the ninjas. 
 //Within each group, the transition will be made according to the order in which the characters were added.
 // public:
-        protected:
+        private:
             vector<Character*> players;
             Character* leader;
             
         public:
             // Constructor
             Team(Character* chrctr);
+
+            //From here to destructor - take from chatGPT
+            // Copy constructor
+                Team(const Team& other) : players(other.players.size()), leader(nullptr) {
+                    for (size_t i = 0; i < other.players.size(); ++i) {
+                        players[i] = other.players[i];
+                        if (other.players[i] == other.leader){
+                            leader = players[i];
+                        }
+                            
+                    }
+                }
+
+                // Copy assignment operator
+                Team& operator=(const Team& other) {
+                    if (this != &other) {
+                        // Clear current players
+                        for (Character* player : players) {
+                            player->setInTeam(false);
+                        }
+                        players.clear();
+
+                        // Copy new players
+                        players.resize(other.players.size());
+                        for (size_t i = 0; i < other.players.size(); ++i) {
+                            players[i] = other.players[i];
+                            if (other.players[i] == other.leader){
+                                leader = players[i];
+                            }
+                            
+                        }
+                    }
+                    return *this;
+                }
+
+                // Move constructor
+                Team(Team&& other) noexcept : players(std::move(other.players)), leader(other.leader) {
+                    other.leader = nullptr;
+                }
+
+                // Move assignment operator
+                Team& operator=(Team&& other) noexcept {
+                    if (this != &other) {
+                        // Clear current players
+                        for (Character* player : players) {
+                            player->setInTeam(false);
+                        }
+                        players.clear();
+
+                        // Move new players
+                        players = std::move(other.players);
+                        leader = other.leader;
+
+                        // Reset other
+                        other.leader = nullptr;
+                    }
+                    return *this;
+                }
+
             // Destructor
-            ~Team(){
-                
-            }
+            virtual ~Team(){}       
+        
             // Add character to your group
             virtual void add(Character* chrctr);
+
+            void addInRow(Character* chrctr){
+                this->players.push_back(chrctr);
+            }
 
             Character* getLeader(){
                 return this->leader;
             }
+
+            unsigned int getPlayersZise(){
+                return this->players.size();
+            }
+
+            Character* getPlayerIn(unsigned int index){
+                return this->players[index];
+            }
+
             void setLeader(Character* lead){
                 this->leader = lead;
             }
+    
             // Verify if enemy leader is alive: 
             // if alive, attack him
             // else, a new leader must be chosen, who is the living character closest (in terms of location) to the dead leader.
